@@ -42,14 +42,14 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ARTrackedObject : MonoBehaviour
 {
-	private const string LogTag = "ARTrackedObject: ";
+	private const string LogTag = "J# ARTrackedObject: ";
 
 	private AROrigin _origin = null;
 	private ARMarker _marker = null;
 
 	private bool visible = false;					// Current visibility from tracking
 	private float timeTrackingLost = 0;				// Time when tracking was last lost
-	public float secondsToRemainVisible = 0.0f;		// How long to remain visible after tracking is lost (to reduce flicker)
+	public float secondsToRemainVisible = 0.0f;	// How long to remain visible after tracking is lost (to reduce flicker)
 	private bool visibleOrRemain = false;			// Whether to show the content (based on above variables)
 
 	public GameObject eventReceiver;
@@ -103,7 +103,7 @@ public class ARTrackedObject : MonoBehaviour
 
 	void Start()
 	{
-		//ARController.Log(LogTag + "Start()");
+		ARController.Log(LogTag + "Start()");
 
 		if (Application.isPlaying) {
 			// In Player, set initial visibility to not visible.
@@ -122,10 +122,12 @@ public class ARTrackedObject : MonoBehaviour
 		
 		// Update tracking if we are running in the Player.
 		if (Application.isPlaying) {
+			
 
 			// Sanity check, make sure we have an AROrigin in parent hierachy.
 			AROrigin origin = GetOrigin();
 			if (origin == null) {
+				ARController.Log (LogTag + "No Origin");
 				//visible = visibleOrRemain = false;
 
 			} else {
@@ -133,6 +135,7 @@ public class ARTrackedObject : MonoBehaviour
 				// Sanity check, make sure we have an ARMarker assigned.
 				ARMarker marker = GetMarker();
 				if (marker == null) {
+					ARController.Log (LogTag + "No ARMarker");
 					//visible = visibleOrRemain = false;
 				} else {
 
@@ -144,10 +147,13 @@ public class ARTrackedObject : MonoBehaviour
 
 						if (!visible) {
 							// Marker was hidden but now is visible.
+							ARController.Log (LogTag + "Marker was hidden but now is visible.");
 							visible = visibleOrRemain = true;
 							if (eventReceiver != null) eventReceiver.BroadcastMessage("OnMarkerFound", marker, SendMessageOptions.DontRequireReceiver);
 
 							for (int i = 0; i < this.transform.childCount; i++) this.transform.GetChild(i).gameObject.SetActive(true);
+						} else {
+							ARController.Log (LogTag + "Marker stayed visible");
 						}
 
                         Matrix4x4 pose;
@@ -163,11 +169,13 @@ public class ARTrackedObject : MonoBehaviour
 						if (eventReceiver != null) eventReceiver.BroadcastMessage("OnMarkerTracked", marker, SendMessageOptions.DontRequireReceiver);
 
 					} else {
-
 						if (visible) {
 							// Marker was visible but now is hidden.
+							ARController.Log (LogTag + "Marker was visible but now is hidden. (after " + secondsToRemainVisible + "s)");
 							visible = false;
 							timeTrackingLost = timeNow;
+						} else {
+//							ARController.Log (LogTag + "Marker stayed hidden.");
 						}
 
 						if (visibleOrRemain && (timeNow - timeTrackingLost >= secondsToRemainVisible)) {
@@ -179,7 +187,10 @@ public class ARTrackedObject : MonoBehaviour
 				} // marker
 
 			} // origin
-		} // Application.isPlaying
+		}  // Application.isPlaying
+		else {
+			ARController.Log (LogTag + "Applicaiton Not Playing");
+		}
 
 	}
 
