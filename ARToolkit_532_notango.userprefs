@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/Android/AndroidManifest_ARToolkit.xml">
+    <Files>
+      <File FileName="Assets/Plugins/Android/AndroidManifest.xml" Line="30" Column="68" />
+      <File FileName="Assets/ARToolKit5-Unity/Scripts/ARTrackedObject.cs" Line="56" Column="2" />
+      <File FileName="Assets/Plugins/Android/AndroidManifest_ARToolkit.xml" Line="5" Column="77" NotebookId="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
