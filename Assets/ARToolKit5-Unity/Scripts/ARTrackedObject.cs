@@ -175,7 +175,7 @@ public class ARTrackedObject : MonoBehaviour
 							visible = false;
 							timeTrackingLost = timeNow;
 						} else {
-//							ARController.Log (LogTag + "Marker stayed hidden.");
+//							ARControllertroller.Log (LogTag + "Marker stayed hidden.");
 						}
 
 						if (visibleOrRemain && (timeNow - timeTrackingLost >= secondsToRemainVisible)) {

@@ -78,7 +78,7 @@ public class ARController : MonoBehaviour
     public static Action<String> logCallback { get; set; }
     private static List<String> logMessages = new List<String>();
     private const int MaximumLogMessages = 1000;
-    private const string LogTag = "ARController: ";
+    private const string LogTag = "J# ARController: ";
 
 	// Application preferences.
 	public bool UseNativeGLTexturingIfAvailable = true;
@@ -1615,7 +1615,7 @@ public class ARController : MonoBehaviour
                 3, 2, 0
             };
 
-        m.Optimize();
+        ;
 		return m;
     }
 
