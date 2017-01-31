@@ -153,7 +153,7 @@ public class ARTrackedObject : MonoBehaviour
 
 							for (int i = 0; i < this.transform.childCount; i++) this.transform.GetChild(i).gameObject.SetActive(true);
 						} else {
-							ARController.Log (LogTag + "Marker stayed visible");
+//							ARController.Log (LogTag + "Marker stayed visible");
 						}
 
                         Matrix4x4 pose;

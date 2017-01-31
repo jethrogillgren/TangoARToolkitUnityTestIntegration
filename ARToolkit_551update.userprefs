@@ -1,0 +1,48 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/Android/AndroidManifest.xml">
+    <Files>
+      <File FileName="Assets/ARToolKit5-Unity/Scripts/ARController.cs" Line="1567" Column="44" />
+      <File FileName="Assets/Plugins/Android/AndroidManifest_ARToolkit.xml" Line="27" Column="56" />
+      <File FileName="Assets/ARToolKit5-Unity/CHANGELOG.txt" Line="159" Column="26" />
+      <File FileName="Assets/Plugins/Android/AndroidManifest.xml" Line="41" Column="9" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ARToolkit_551update" expanded="True">
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="ARToolKit5-Unity" expanded="True">
+                <Node name="Scripts" expanded="True" />
+              </Node>
+              <Node name="Plugins" expanded="True">
+                <Node name="Android" expanded="True">
+                  <Node name="AndroidManifest.xml" selected="True" />
+                </Node>
+              </Node>
+              <Node name="TangoPrefabs" expanded="True">
+                <Node name="Scripts" expanded="True" />
+              </Node>
+              <Node name="TangoSDK" expanded="True">
+                <Node name="TangoUX" expanded="True">
+                  <Node name="Scripts" expanded="True">
+                    <Node name="Common" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="ARToolkit_551update" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

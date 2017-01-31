@@ -154,33 +154,6 @@
      <Compile Include="Assets\TangoSDK\TangoUX\Scripts\Listeners\UxExceptionEventListener.cs" />
      <Compile Include="Assets\TangoSDK\TangoUX\Scripts\TangoUx.cs" />
      <None Include="Assets\StreamingAssets\build_info.txt" />
-     <None Include="Assets\TangoSDK\Examples\ExperimentalMeshOcclusion\Shaders\ZTestBlur.shader" />
-     <None Include="Assets\TangoPrefabs\Shaders\TangoEnvironmentalLighting\EnvironmentalLightingStandard.shader" />
-     <None Include="Assets\TangoPrefabs\Shaders\PointCloud.shader" />
-     <None Include="Assets\TangoSDK\Core\Shaders\RGB_ARScreen.shader" />
-     <None Include="Assets\Plugins\Android\AndroidManifest_ARToolkit.xml" />
-     <None Include="Assets\TangoPrefabs\Shaders\YUV2RGB.shader" />
-     <None Include="Assets\TangoSDK\Core\Shaders\RGB2YUV_CbCr.shader" />
-     <None Include="Assets\ARToolKit5-Unity\CHANGELOG.txt" />
-     <None Include="Assets\TangoPrefabs\Shaders\ARPostProcess.shader" />
-     <None Include="Assets\TangoSDK\Examples\ExperimentalMeshBuilderWithPhysics\Shader\UnlitColor.shader" />
-     <None Include="Assets\TangoPrefabs\Shaders\TangoEnvironmentalLighting\EnvironmentalLightingSpecularBumped.shader" />
-     <None Include="Assets\TangoPrefabs\Shaders\TangoEnvironmentalLighting\TangoEnvironmentalLighting.cginc" />
-     <None Include="Assets\TangoSDK\Core\Shaders\DepthEmulation.shader" />
-     <None Include="Assets\TangoSDK\Core\Shaders\RGB2YUV_Y.shader" />
-     <None Include="Assets\Plugins\Android\AndroidManifest_Tango.xml" />
-     <None Include="Assets\TangoSDK\Examples\ExperimentalMeshOcclusion\Shaders\OcclusionMesh.shader" />
-     <None Include="Assets\TangoSDK\Examples\ExperimentalMeshBuilderWithColor\Shaders\UnlitVertexColor.shader" />
-     <None Include="Assets\TangoSDK\Examples\ExperimentalMeshOcclusion\Shaders\OcclusionMask.shader" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
-     <None Include="Assets\TangoSDK\Core\Shaders\ColorCameraEmulation.shader" />
-     <None Include="Assets\TangoPrefabs\Shaders\PointCloud_Occlusion.shader" />
-     <None Include="Assets\TangoSDK\Examples\ExperimentalMeshOcclusion\Shaders\TangoOcclusion.cginc" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\Mask.shader" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
-     <None Include="Assets\TangoPrefabs\Shaders\TangoEnvironmentalLighting\EnvironmentalLightingDiffuse.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity551/Unity551.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
