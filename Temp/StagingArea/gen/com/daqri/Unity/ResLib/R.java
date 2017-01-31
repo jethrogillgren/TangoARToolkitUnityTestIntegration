@@ -59,28 +59,26 @@ public final class R {
         public static final int ic_notification_system=0x7f02000d;
     }
     public static final class id {
-        public static final int android_view_container=0x7f0a0000;
-        public static final int bubble_level_err=0x7f0a0003;
-        public static final int bubble_level_group=0x7f0a0002;
-        public static final int bubble_level_ok=0x7f0a0004;
-        public static final int component_hold_steady=0x7f0a0009;
-        public static final int connection_layout=0x7f0a000c;
-        public static final int connection_layout_title=0x7f0a000a;
-        public static final int exception_container=0x7f0a000b;
-        public static final int exception_description=0x7f0a0007;
-        public static final int exception_icon=0x7f0a0005;
-        public static final int exception_status=0x7f0a0008;
-        public static final int exception_title=0x7f0a0006;
-        public static final int frame=0x7f0a0001;
-        public static final int tango_ux_layout=0x7f0a000d;
+        public static final int bubble_level_err=0x7f0a0002;
+        public static final int bubble_level_group=0x7f0a0001;
+        public static final int bubble_level_ok=0x7f0a0003;
+        public static final int component_hold_steady=0x7f0a0008;
+        public static final int connection_layout=0x7f0a000b;
+        public static final int connection_layout_title=0x7f0a0009;
+        public static final int exception_container=0x7f0a000a;
+        public static final int exception_description=0x7f0a0006;
+        public static final int exception_icon=0x7f0a0004;
+        public static final int exception_status=0x7f0a0007;
+        public static final int exception_title=0x7f0a0005;
+        public static final int frame=0x7f0a0000;
+        public static final int tango_ux_layout=0x7f0a000c;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int component_hold_steady=0x7f030001;
-        public static final int exception_component=0x7f030002;
-        public static final int layout_connection=0x7f030003;
-        public static final int layout_tango_ux=0x7f030004;
-        public static final int tango_ux_layout=0x7f030005;
+        public static final int component_hold_steady=0x7f030000;
+        public static final int exception_component=0x7f030001;
+        public static final int layout_connection=0x7f030002;
+        public static final int layout_tango_ux=0x7f030003;
+        public static final int tango_ux_layout=0x7f030004;
     }
     public static final class string {
         public static final int action_required=0x7f050000;
