@@ -104,6 +104,7 @@ public class ARTrackedObject : MonoBehaviour
 	void Start()
 	{
 		ARController.Log(LogTag + "Start()");
+		secondsToRemainVisible = 0.0f;
 
 		if (Application.isPlaying) {
 			// In Player, set initial visibility to not visible.

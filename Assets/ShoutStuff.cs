@@ -21,6 +21,13 @@ public class ShoutStuff : MonoBehaviour {
 
 		PluginFunctions.LogCallback c = new PluginFunctions.LogCallback (this.JLog);
 		PluginFunctions.arwRegisterLogCallback (c);
+
+
+//		// pick a random color
+//		Color newColor = new Color( UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value, 1.0f );
+//		JLog ("Coloured the cube " + newColor.ToString() );
+//		// apply it on current object's material
+//		GetComponent<MeshRenderer>().material.color = newColor;
 	}
 
 	
@@ -44,6 +51,18 @@ public class ShoutStuff : MonoBehaviour {
 		builder.AppendLine ("VideoParams: w:" + width + " h:"+height + " pixelSize:" + pixelSize + " formatStr:" + pixelFormatString);
 
 		builder.AppendLine ("Current ErrCode: " + PluginFunctions.arwGetError ());
+
+
+		using (AndroidJavaClass cls_UnityPlayer = new AndroidJavaClass("com.google.unity.UnityTangoARPlayer"))
+		{
+			JLog (cls_UnityPlayer.ToString());
+			cls_UnityPlayer.CallStatic("foo");
+//			using (AndroidJavaObject obj_Activity = cls_UnityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+//			{
+//				obj_Activity .CallStatic("foo");
+//			}
+		}
+		builder.AppendLine ( "I Called UnityTangoARPlayer.foo()" );
 
 		debugAndToast( builder.ToString() );
 
