@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+//using System.Diagnostics;
 
 using Tango;
 
@@ -12,6 +13,8 @@ public class VideoFrameForwarder : MonoBehaviour, ITangoVideoOverlay, ITangoLife
 
 	private TangoApplication m_tangoApplication;
 	private long fCount = 0;
+
+	AndroidJavaClass cls_UnityPlayer;
 
 	private System.IO.FileStream _FileStream;
 
@@ -32,6 +35,8 @@ public class VideoFrameForwarder : MonoBehaviour, ITangoVideoOverlay, ITangoLife
 		m_tangoApplication = FindObjectOfType<TangoApplication>();
 //		m_tangoApplication.m_enableVideoOverlay = true;
 //		m_tangoApplication.m_videoOverlayUseByteBufferMethod = true;
+
+		cls_UnityPlayer = new AndroidJavaClass(m_activityTangoARClass);
 
 		m_tangoApplication.Register(this);
 
@@ -101,7 +106,6 @@ public class VideoFrameForwarder : MonoBehaviour, ITangoVideoOverlay, ITangoLife
 	public void OnTangoImageAvailableEventHandler(TangoEnums.TangoCameraId cameraId, TangoUnityImageData imageBuffer)
 	{
 
-
 		if (fCount == 0) {
 			TangoEnums.TangoImageFormatType enumDisplayStatus = (TangoEnums.TangoImageFormatType)imageBuffer.format;
 			string stringValue = enumDisplayStatus.ToString ();
@@ -134,8 +138,23 @@ public class VideoFrameForwarder : MonoBehaviour, ITangoVideoOverlay, ITangoLife
 //			v = yuv [(position.y / 2) * (size.width / 2) + (position.x / 2) + size.total + (size.total / 4)];
 //		}
 
-		if(fCount%100==0)
-			callUnityTangoARPlayer ( "arwAcceptVideoImage", new object[] {imageBuffer.data} );
+//		if(fCount%100==0)
+//		System.Diagnostics.Stopwatch timer = System.Diagnostics.Stopwatch.StartNew();
+
+		callUnityTangoARPlayer ( "arwAcceptVideoImage", new object[] {
+			halveYUV420(
+				halveYUV420(imageBuffer.data, imageBuffer.width, imageBuffer.height),
+				imageBuffer.width/2,
+				imageBuffer.height/2
+			)
+			}
+		);
+//
+//		timer.Stop();  
+//		TimeSpan timespan = timer.Elapsed;
+////
+//		JLog( String.Format("{0:00}:{1:00}:{2:00}", timespan.Minutes, timespan.Seconds, timespan.Milliseconds / 10) );
+
 
 		//We are calling ARToolkit Library native function, through JNI, to feed in a frame of Tango video to the ARToolkit processing.
 		/**
@@ -153,90 +172,27 @@ public class VideoFrameForwarder : MonoBehaviour, ITangoVideoOverlay, ITangoLife
 
 	}
 
-
-	public struct RGB
-	{
-		private byte _r;
-		private byte _g;
-		private byte _b;
-
-		public RGB(byte r, byte g, byte b)
-		{
-			this._r = r;
-			this._g = g;
-			this._b = b;
+	private byte[] halveYUV420(byte[] data, uint imageWidth, uint imageHeight) {
+		byte[] yuv = new byte[imageWidth/2 * imageHeight/2 * 3 / 2];
+		// halve yuma
+		uint i = 0;
+		for (uint y = 0; y < imageHeight; y+=2) {
+			for (uint x = 0; x < imageWidth; x+=2) {
+				yuv[i] = data[y * imageWidth + x];
+				i++;
+			}
 		}
-
-		public byte R
-		{
-			get { return this._r; }
-			set { this._r = value; }
+		// halve U and V color components
+		for (uint y = 0; y < imageHeight / 2; y+=2) {
+			for (uint x = 0; x < imageWidth; x += 4) {
+				yuv[i] = data[(imageWidth * imageHeight) + (y * imageWidth) + x];
+				i++;
+				yuv[i] = data[(imageWidth * imageHeight) + (y * imageWidth) + (x + 1)];
+				i++;
+			}
 		}
-
-		public byte G
-		{
-			get { return this._g; }
-			set { this._g = value; }
-		}
-
-		public byte B
-		{
-			get { return this._b; }
-			set { this._b = value; }
-		}
-
-		public bool Equals(RGB rgb)
-		{
-			return (this.R == rgb.R) && (this.G == rgb.G) && (this.B == rgb.B);
-		}
+		return yuv;
 	}
-
-	public struct YUV
-	{
-		private double _y;
-		private double _u;
-		private double _v;
-
-		public YUV(double y, double u, double v)
-		{
-			this._y = y;
-			this._u = u;
-			this._v = v;
-		}
-
-		public double Y
-		{
-			get { return this._y; }
-			set { this._y = value; }
-		}
-
-		public double U
-		{
-			get { return this._u; }
-			set { this._u = value; }
-		}
-
-		public double V
-		{
-			get { return this._v; }
-			set { this._v = value; }
-		}
-
-		public bool Equals(YUV yuv)
-		{
-			return (this.Y == yuv.Y) && (this.U == yuv.U) && (this.V == yuv.V);
-		}
-	}
-
-	public static RGB YUVToRGB(YUV yuv)
-	{
-		byte r = (byte)(yuv.Y + 1.4075 * (yuv.V - 128));
-		byte g = (byte)(yuv.Y - 0.3455 * (yuv.U - 128) - (0.7169 * (yuv.V - 128)));
-		byte b = (byte)(yuv.Y + 1.7790 * (yuv.U - 128));
-
-		return new RGB(r, g, b);
-	}
-
 
 
 //	public static Color YUV2Color(float y_value, float u_value, float v_value)
@@ -249,12 +205,12 @@ public class VideoFrameForwarder : MonoBehaviour, ITangoVideoOverlay, ITangoLife
 //	}
 
 	private void callUnityTangoARPlayer(string func, object[] args ) {
-		using (AndroidJavaClass cls_UnityPlayer = new AndroidJavaClass(m_activityTangoARClass))
-		{
-//			JLog ("Calling " + m_activityTangoARClass + "." + func + "   with args: " + args.ToString() ) ;
-//			cls_UnityPlayer.CallStatic( func, args );
+//		using (AndroidJavaClass cls_UnityPlayer = new AndroidJavaClass(m_activityTangoARClass))
+//		{
+////			JLog ("Calling " + m_activityTangoARClass + "." + func + "   with args: " + args.ToString() ) ;
+////			cls_UnityPlayer.CallStatic( func, args );
 			cls_UnityPlayer.CallStatic(func, args);
-		}
+//		}
 	}
 
 	protected virtual void JLog(string val) {

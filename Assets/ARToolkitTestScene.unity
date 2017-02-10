@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.44494578, g: 0.49452108, b: 0.5736597, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.88407254, g: 0.004824162, b: 0.03136993, a: 1}
+      second: {r: 0.91472816, g: 0.12959231, b: 0.9565377, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
@@ -580,7 +580,7 @@ MonoBehaviour:
   currentTemplateSize: 16
   currentTemplateCountMax: 25
   currentBorderSize: 0.25
-  currentPatternDetectionMode: 0
+  currentPatternDetectionMode: 1
   currentMatrixCodeType: 3
   currentImageProcMode: 0
   currentUseVideoBackground: 1
@@ -947,7 +947,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
       propertyPath: m_videoOverlayUseTextureMethod
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}

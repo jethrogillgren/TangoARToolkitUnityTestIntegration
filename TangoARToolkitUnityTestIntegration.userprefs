@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/VideoFrameForwarder.cs">
+    <Files>
+      <File FileName="Assets/VideoFrameForwarder.cs" Line="190" Column="2" />
+      <File FileName="Assets/Plugins/Android/AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="Assets/TangoSDK/Core/Scripts/Common/TangoEnums.cs" Line="1" Column="1" />
+      <File FileName="Assets/ARToolKit5-Unity/Scripts/ARTrackedObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/ARToolKit5-Unity/Scripts/ARCamera.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

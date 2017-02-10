@@ -302,7 +302,7 @@ public class ARController : MonoBehaviour
 	[SerializeField]
 	private ARToolKitImageProcMode currentImageProcMode = ARToolKitImageProcMode.AR_IMAGE_PROC_FRAME_IMAGE;
 	[SerializeField]
-	private bool currentUseVideoBackground = true;
+	private bool currentUseVideoBackground = false;
 	[SerializeField]
 	private bool currentNFTMultiMode = false;
 	[SerializeField]
@@ -655,6 +655,7 @@ public class ARController : MonoBehaviour
 					if (ContentFlipH) _videoProjectionMatrix0 = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(-1.0f, 1.0f, 1.0f)) * _videoProjectionMatrix0;
 
 					_videoBackgroundMeshGO0 = CreateVideoBackgroundMesh(0, _videoWidth0, _videoHeight0, BackgroundLayer0, out _videoColorArray0, out _videoColor32Array0, out _videoTexture0, out _videoMaterial0);
+		
 					if (_videoBackgroundMeshGO0 == null || _videoTexture0 == null || _videoMaterial0 == null) {
 						Log (LogTag + "Error: unable to create video mesh.");
 					}
@@ -1671,9 +1672,9 @@ public class ARController : MonoBehaviour
 	private string showGUIErrorDialogContent = "";
 	private Rect showGUIErrorDialogWinRect = new Rect(0.0f, 0.0f, 320.0f, 240.0f);
 
-	private bool showGUIDebug = false;
+	private bool showGUIDebug = true;
     private bool showGUIDebugInfo = true;
-    private bool showGUIDebugLogConsole = false;
+	private bool showGUIDebugLogConsole = false;
 	
     void OnGUI()
     {
