@@ -17,7 +17,7 @@
 //
 // </copyright>
 //-----------------------------------------------------------------------
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -31,16 +31,11 @@ public class UxExceptionEventListener : AndroidJavaProxy
     /// The lock object used as a mutex.
     /// </summary>
     private static System.Object m_lockObject = new System.Object();
-
+ 
     /// <summary>
-    /// The UX event being passed from Java to Unity theads.
+    /// A queue that holds ux exception events waiting to be sent on the main Unity thread.
     /// </summary>
-    private static Tango.UxExceptionEvent m_tangoUxEvent;
-
-    /// <summary>
-    /// The dirty flag for when a new event is waiting on the main thread.
-    /// </summary>
-    private static bool m_isDirty;
+    private static Queue<Tango.UxExceptionEvent> m_tangoPendingEventQueue = new Queue<Tango.UxExceptionEvent>();
     
     /// <summary>
     /// Occurs when a UX Exception event happens.
@@ -110,19 +105,25 @@ public class UxExceptionEventListener : AndroidJavaProxy
     /// Raise a Tango event if there is new data.
     /// </summary>
     internal static void SendIfAvailable()
-    {
-        if (m_isDirty && m_onUxExceptionEvent != null)
+    { 
+        Tango.UxExceptionEvent eventCopy;
+        float startTime = Time.time;
+       
+        if (m_onUxExceptionEvent == null)
         {
-            Tango.UxExceptionEvent eventCopy;
+            return;
+        }
 
+        int queueCount = m_tangoPendingEventQueue.Count;
+        for (int i = 0; i < queueCount; i++)
+        {
             // Copy the struct on the Unity main thread inside the lock and get out of the lock.
             lock (m_lockObject)
             {   
-                eventCopy = m_tangoUxEvent;
+                eventCopy = m_tangoPendingEventQueue.Dequeue();
             }
 
             m_onUxExceptionEvent(eventCopy);
-            m_isDirty = false;
         }
     }
 
@@ -159,19 +160,22 @@ public class UxExceptionEventListener : AndroidJavaProxy
                                                      Justification = "Called from Java.")]
     private void onUxExceptionEvent(AndroidJavaObject tangoUxEvent)
     {
-        Tango.UxExceptionEvent uxEvent = new Tango.UxExceptionEvent();
+        // Copy the exception event data to UxEvent struct.
+        Tango.UxExceptionEvent uxEvent;
         uxEvent.type = (Tango.TangoUxEnums.UxExceptionEventType)tangoUxEvent.Call<int>("getType");
         uxEvent.value = tangoUxEvent.Call<float>("getValue");
         uxEvent.status = (Tango.TangoUxEnums.UxExceptionEventStatus)tangoUxEvent.Call<int>("getStatus");
+
+        // Immediately fire async event.
         if (m_onUxExceptionEventMultithreadedAvailable != null)
         {
             m_onUxExceptionEventMultithreadedAvailable(uxEvent);
         }
 
+        // Enqueue event to fire synchronized event(s) later on Unity thread.
         lock (m_lockObject)
         {
-            m_tangoUxEvent = uxEvent;
-            m_isDirty = true;
+            m_tangoPendingEventQueue.Enqueue(uxEvent);
         }  
     }
 }

@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C62C30BD-F86E-1743-CA4C-B1FAE75A5B6F}</ProjectGuid>
+    <ProjectGuid>{172DF9F5-9DD5-A012-9027-691C189D6145}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -123,6 +123,8 @@
      <Compile Include="Assets\TangoSDK\Examples\AreaDescriptionManagement\Scripts\ADMLockY.cs" />
      <Compile Include="Assets\TangoSDK\Examples\AreaDescriptionManagement\Scripts\ADMQualityCamera.cs" />
      <Compile Include="Assets\TangoSDK\Examples\AreaDescriptionManagement\Scripts\ADMQualityManager.cs" />
+     <Compile Include="Assets\TangoSDK\Examples\AugmentedReality\Scripts\ARGUIController.cs" />
+     <Compile Include="Assets\TangoSDK\Examples\AugmentedReality\Scripts\ARTouchEffect.cs" />
      <Compile Include="Assets\TangoSDK\Examples\Common\Scripts\AreaDescriptionListElement.cs" />
      <Compile Include="Assets\TangoSDK\Examples\Common\Scripts\FPSCounter.cs" />
      <Compile Include="Assets\TangoSDK\Examples\Common\Scripts\SceneSwitcher.cs" />

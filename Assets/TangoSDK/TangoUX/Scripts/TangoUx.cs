@@ -119,10 +119,10 @@ namespace Tango
         }
 
         /// <summary>
-        /// This is called when the permission granting process is finished.
+        /// Callback to handle android permissions being granted.
         /// </summary>
-        /// <param name="permissionsGranted"><c>true</c> if permissions were granted, otherwise <c>false</c>.</param>
-        public void OnTangoPermissions(bool permissionsGranted)
+        /// <param name="permissionsGranted">If set to <c>true</c> then permissions were granted, otherwise <c>false</c>.</param>
+        public void OnAndroidPermissions(bool permissionsGranted)
         {
             if (m_enableUXLibrary && permissionsGranted)
             {
@@ -137,6 +137,14 @@ namespace Tango
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Callback to handle all tango permissions being granted.
+        /// </summary>
+        /// <param name="permissionsGranted">If set to <c>true</c> then permissions were granted, otherwise <c>false</c>.</param>
+        public void OnTangoPermissions(bool permissionsGranted)
+        {
         }
 
         /// <summary>

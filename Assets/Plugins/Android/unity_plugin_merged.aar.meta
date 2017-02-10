@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 530cdf77512bb4daa8e8e31e950a11c4
-timeCreated: 1485858822
-licenseType: Free
+guid: 2f48639a427b241b693e47b123ee3ce7
+timeCreated: 1475588386
+licenseType: Pro
 PluginImporter:
   serializedVersion: 1
   iconMap: {}
   executionOrder: {}
   isPreloaded: 0
-  isOverridable: 0
   platformData:
     Android:
       enabled: 1
-      settings: {}
+      settings:
+        CPU: ARMv7
     Any:
       enabled: 0
       settings: {}
