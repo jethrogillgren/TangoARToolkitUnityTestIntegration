@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/TangoSDK/Examples/Scenes/SimpleAugmentedReality.unity
+- path: Assets/ARToolkitTestScene.unity
   isLoaded: 1
   isActive: 1

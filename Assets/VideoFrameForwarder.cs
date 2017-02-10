@@ -105,20 +105,37 @@ public class VideoFrameForwarder : MonoBehaviour, ITangoVideoOverlay, ITangoLife
 		if (fCount == 0) {
 			TangoEnums.TangoImageFormatType enumDisplayStatus = (TangoEnums.TangoImageFormatType)imageBuffer.format;
 			string stringValue = enumDisplayStatus.ToString ();
-			JLog ("TangoImageAvailable on cameraId: " + cameraId + "  Format: " + imageBuffer.format + "(" + stringValue + "),  length: " + imageBuffer.data.Length + "  (" + imageBuffer.width + "x" + imageBuffer.height + "),  timestamp: " + imageBuffer.timestamp);
+			JLog ("TangoImageAvailable on cameraId: " + cameraId + "  Format: " + imageBuffer.format + "(" + stringValue + "),  length: " + imageBuffer.data.Length + "  (" + imageBuffer.width + "x" + imageBuffer.height + "),  timestamp: " + imageBuffer.timestamp + ",  Stride: " + imageBuffer.stride);
 		}
 
 		fCount++;
-		if (_FileStream!= null && _FileStream.Length >= 1550464512) {
-			JLog ("Closed File: " + _FileStream.Name);
-			_FileStream.Close();
-			_FileStream = null;
-		} else if ( _FileStream.CanWrite) {
-			JLog ("Write FIle: " + _FileStream.Length);
-			_FileStream.Write (imageBuffer.data, 0, imageBuffer.data.Length);
-		}
+//		if (_FileStream!= null && _FileStream.Length >= 600464512) {
+//			JLog ("Closed File: " + _FileStream.Name);
+//			_FileStream.Close();
+//			_FileStream = null;
+//		} else if ( _FileStream.CanWrite) {
+//			JLog ("Write File: " + _FileStream.Length);
+//			_FileStream.Write (imageBuffer.data, 0, imageBuffer.data.Length);
+//		}
 
-//		callUnityTangoARPlayer ( "arwAcceptVideoImage", new object[] {imageBuffer.data} );
+//		//For each YV12 frame  BROKEN
+//		for (int i = 0; i < imageBuffer.width * imageBuffer.height; i+=36) {
+//			for (int y = 0; y < 24; y++)
+//				JLog ("Y: " + imageBuffer.data[i+y]);
+//			for (int u = 24; u < 30; u++)
+//				JLog ("U: " + imageBuffer.data[i+u]);
+//			for (int v = 30; v < 36; v++)
+//				JLog ("V: " + imageBuffer.data[i+v]);
+//			JLog ("--------------");
+			
+//			size.total = size.width * size.height;
+//			y = yuv [position.y * size.width + position.x];
+//			u = yuv [(position.y / 2) * (size.width / 2) + (position.x / 2) + size.total];
+//			v = yuv [(position.y / 2) * (size.width / 2) + (position.x / 2) + size.total + (size.total / 4)];
+//		}
+
+		if(fCount%100==0)
+			callUnityTangoARPlayer ( "arwAcceptVideoImage", new object[] {imageBuffer.data} );
 
 		//We are calling ARToolkit Library native function, through JNI, to feed in a frame of Tango video to the ARToolkit processing.
 		/**
